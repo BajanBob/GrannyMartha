@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Granny Martha">
+<meta name="theme-color" content="#7b2d5b">
 <title>Granny Martha</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Gabarito:wght@600;800&display=swap" rel="stylesheet">
@@ -87,6 +91,11 @@ label{font-weight:700;font-size:15px}
 .gift-i{border:1px solid var(--line);border-radius:12px;padding:8px 4px;text-align:center;font-size:12px;line-height:1.2;color:var(--muted)}
 .gift-i span{display:block;font-size:26px}
 .gift-i.locked{opacity:.45}.gift-i.locked span{filter:grayscale(1)}
+.veil{position:fixed;inset:0;background:rgba(10,20,22,.55);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.veil .card{max-width:560px;width:100%;max-height:calc(100% - 32px);overflow-y:auto}
+.veil h2{color:var(--plum);font-size:28px}
+.veil p{margin:0}
+.revise{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 .hide{display:none!important}
 ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 @media (max-width:860px){.cols{grid-template-columns:minmax(0,1fr)}.subjects{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -109,6 +118,7 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
       <p class="hello" id="hello">Hello Bubba, pet. Kettle's on. Pick a subject and we'll take it one question at a time.</p>
     </div>
     <div class="stars">
+      <button class="chip" type="button" id="b-finish">Finish for today</button>
       <button class="chip hide" type="button" id="b-voice" aria-pressed="false">Granny's voice: off</button>
       <span class="chip">Stars <b id="stars">0</b></span>
       <span class="chip">Streak <b id="streak">0</b></span>
@@ -123,16 +133,16 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
       <div class="q" id="q-text"></div>
 
       <div id="conf-wrap">
-        <div class="step">Step 1. Before you answer, how sure are you?</div>
+        <div class="step">First, tell your Granny: how sure are you, pet?</div>
         <div class="conf" id="conf" role="group" aria-label="How sure are you">
-          <button type="button" data-c="sure">I know this</button>
+          <button type="button" data-c="sure">I know this, Granny</button>
           <button type="button" data-c="think">I think so</button>
           <button type="button" data-c="guess">I'd be guessing</button>
         </div>
       </div>
 
       <div>
-        <div class="step" id="step2">Step 2. Choose your answer</div>
+        <div class="step" id="step2">Now pick your answer, love</div>
         <div class="opts locked" id="opts"></div>
       </div>
 
@@ -142,16 +152,16 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
       <div class="says gift hide" id="gift"><span class="who">A gift from Granny</span><span id="gift-text"></span></div>
 
       <div class="hide" id="explain">
-        <label for="ex-text">Step 3. Now teach Granny. In your own words, why is that the answer?</label>
-        <textarea id="ex-text" rows="3" placeholder="Explaining it makes it stick. One or two sentences will do."></textarea>
-        <div class="row" style="margin-top:8px"><button class="btn ghost" type="button" id="ex-send">Show Granny my explanation</button></div>
+        <label for="ex-text">Now teach your old Granny, Bubba. Why is that the answer? Say it in your own words.</label>
+        <textarea id="ex-text" rows="3" placeholder="Start with &quot;Because...&quot;. One or two sentences will do, love."></textarea>
+        <div class="row" style="margin-top:8px"><button class="btn ghost" type="button" id="ex-send">Tell Granny</button></div>
         <div class="says hide" id="ex-fb" style="margin-top:10px"><span class="who">Granny Martha</span><span id="ex-fb-text"></span></div>
       </div>
 
       <div class="row">
-        <button class="btn ghost" type="button" id="b-hint">Give me a hint</button>
-        <button class="btn ghost hide" type="button" id="b-read">Read it to me</button>
-        <button class="btn hide" type="button" id="b-next">Next question</button>
+        <button class="btn ghost" type="button" id="b-hint">Granny, give me a clue</button>
+        <button class="btn ghost hide" type="button" id="b-read">Read it to me, Granny</button>
+        <button class="btn hide" type="button" id="b-next">Next one, please, Granny</button>
       </div>
     </main>
 
@@ -173,18 +183,36 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
       </section>
 
       <section class="card">
-        <h2>How Granny helps you remember</h2>
+        <h2>Granny's way of learning</h2>
         <ul class="tips">
-          <li><b>Guess first.</b> Saying how sure you are shows you what you really know.</li>
-          <li><b>Mistakes come back.</b> Anything you miss turns up again soon, until it sticks.</li>
-          <li><b>Teach it back.</b> If you can explain it to Granny, you can explain it in an exam.</li>
-          <li><b>It gets harder as you get better.</b> Three right in a row and I raise the level.</li>
+          <li><b>Have a guess first, pet.</b> Telling me how sure you are shows us both what you really know.</li>
+          <li><b>Mistakes are welcome here.</b> Anything you miss, I'll bring back soon until it sticks.</li>
+          <li><b>Teach it back to me.</b> If you can explain it to your Granny, you can explain it in an exam.</li>
+          <li><b>We'll go up a level together.</b> Three right in a row and I'll make it a bit harder.</li>
+          <li><b>Revise before bed.</b> Ten minutes going over today's work keeps it in your head.</li>
         </ul>
         <div class="row"><button class="btn ghost" type="button" id="b-name">Change the name</button><button class="btn ghost" type="button" id="b-reset">Start again from zero</button></div>
         <form id="name-form" class="row hide" style="flex-wrap:nowrap"><input type="text" id="name-in" aria-label="Your first name" placeholder="Your first name" maxlength="20"><button class="btn" type="submit">Save</button></form>
         <p class="small">Your progress is saved in this browser only.</p>
       </section>
     </aside>
+  </div>
+</div>
+
+<div class="veil" id="welcome" role="dialog" aria-modal="true" aria-labelledby="w-h">
+  <div class="card">
+    <h2 id="w-h">Hello, Bubba</h2>
+    <p id="w-text"></p>
+    <div id="w-revise" class="hide"><p><b>Before anything new, let's revise these from last time:</b></p><ul class="revise" id="w-list"></ul></div>
+    <div class="row"><button class="btn" type="button" id="w-go">Let's start, Granny</button><button class="btn ghost" type="button" id="w-read">Read it to me, Granny</button></div>
+  </div>
+</div>
+<div class="veil hide" id="bye" role="dialog" aria-modal="true" aria-labelledby="b-h">
+  <div class="card">
+    <h2 id="b-h">Before you go, Bubba</h2>
+    <p id="bye-text"></p>
+    <div id="bye-revise" class="hide"><p><b>Revise these tonight, and again in two days:</b></p><ul class="revise" id="bye-list"></ul></div>
+    <div class="row"><button class="btn" type="button" id="bye-ok">I'll revise, Granny. Goodbye!</button><button class="btn ghost" type="button" id="bye-read">Read it to me, Granny</button><button class="btn ghost" type="button" id="bye-stay">One more question</button></div>
   </div>
 </div>
 
@@ -264,11 +292,11 @@ const BANK = {
 const ORDER = ['maths','english','geography','re','history'];
 
 /* ---------- saved progress ---------- */
-let S = {name:'Bubba', stars:0, gifts:0, box:{}, streak:{}, subj:'maths'};
+let S = {name:'Bubba', stars:0, gifts:0, box:{}, streak:{}, subj:'maths', revise:[]};
 try { const v = JSON.parse(localStorage.getItem('granny_martha_v1')); if (v && typeof v==='object') S = Object.assign(S, v); } catch(e){}
 const save = () => { try { localStorage.setItem('granny_martha_v1', JSON.stringify(S)); } catch(e){} };
 
-let cur = null, conf = null, answered = false, recent = [];
+let cur = null, conf = null, answered = false, recent = [], sessionCount = 0;
 const GIFTS = [['🍪','Jam tart'],['🧣','Knitted scarf'],['⭐','Gold star badge'],['⚽','Football'],['🧭','Explorer\'s compass'],['🔭','Telescope'],['🎩','Wizard hat'],['🚀','Rocket'],['👑','Crown'],['🏆','Champion\'s trophy']];
 const PER_GIFT = 10;
 const N = () => S.name || 'Bubba';
@@ -341,6 +369,9 @@ function answer(btn, txt){
   $('#fb-text').textContent = say + cur.why;
   $('#conf-wrap').classList.add('hide'); $('#b-hint').classList.add('hide');
   $('#explain').classList.remove('hide'); $('#b-next').classList.remove('hide');
+  if (!ok || conf==='guess'){ S.revise = (S.revise||[]).filter(r=>r.q!==cur.text); S.revise.unshift({s:BANK[k].name, t:cur.t, q:cur.text, a:cur.right}); S.revise = S.revise.slice(0,8); }
+  else S.revise = (S.revise||[]).filter(r=>r.q!==cur.text || S.box[cur.id] < 2);
+  sessionCount++;
   const st = S.streak[k]||0;
   if (ok && (st===3 || st===5 || st===10)) $('#fb-text').textContent += ` That's ${st} in a row, ${N()}. You're on a roll!`;
   save(); drawSubjects();
@@ -369,7 +400,7 @@ $('#b-read').onclick = ()=>{ const parts = [cur.text]; if (!answered) parts.push
 
 /* ---------- Granny's brain (asks Claude when the page is allowed to) ---------- */
 let sample = null;
-const PERSONA = "You are Granny Martha, a warm, patient, gently funny English grandmother and retired teacher tutoring a 12-year-old in England (Key Stage 3, building towards GCSEs in Maths, English, Geography, RE and History). Use British English and British curriculum terms. Keep replies under 90 words, plain text only, no markdown. Be encouraging but honest. Guide the child to the answer with a clue or a question rather than just giving it, unless they ask for a fact. Stay on schoolwork and learning; if asked about anything unsuitable for a child or anything personal or worrying, kindly suggest they talk to a parent, carer or teacher. Be fair and respectful about every religion.";
+const PERSONA = "You are Granny Martha, a warm, patient, gently funny English grandmother and retired teacher tutoring a 12-year-old in England (Key Stage 3, building towards GCSEs in Maths, English, Geography, RE and History). Use British English and British curriculum terms. Keep replies under 90 words, plain text only, no markdown. Be encouraging but honest. Guide the child to the answer with a clue or a question rather than just giving it, unless they ask for a fact. Stay on schoolwork and learning; if asked about anything unsuitable for a child or anything personal or worrying, kindly suggest they talk to a parent, carer or teacher. Be fair and respectful about every religion. You believe a good education is the child's way out of hard times, and now and then you remind them, gently, to revise so they remember.";
 if (window.claude && claude.use) claude.use('sample').then(s=>{ sample = s; if (!s) noBrain(); }).catch(noBrain); else noBrain();
 function noBrain(){ sample = null; $('#ask-form').classList.add('hide'); $('#ask-note').textContent = "Granny's question box isn't switched on for this view, but all the practice questions and hints work."; }
 
@@ -407,10 +438,38 @@ $('#b-name').onclick = ()=>{ $('#name-form').classList.toggle('hide'); $('#name-
 $('#name-form').addEventListener('submit', e=>{ e.preventDefault(); S.name = $('#name-in').value.trim().slice(0,20); save(); $('#name-form').classList.add('hide'); drawSubjects(); });
 let armed = false;
 $('#b-reset').onclick = ()=>{ if (!armed){ armed = true; $('#b-reset').textContent = 'Press again to wipe progress'; setTimeout(()=>{ armed=false; $('#b-reset').textContent='Start again from zero'; }, 4000); return; }
-  S = {name:S.name, stars:0, gifts:0, box:{}, streak:{}, subj:S.subj}; save(); armed=false; $('#b-reset').textContent='Start again from zero'; drawSubjects(); nextQ(); };
+  S = {name:S.name, stars:0, gifts:0, box:{}, streak:{}, subj:S.subj, revise:[]}; save(); armed=false; $('#b-reset').textContent='Start again from zero'; drawSubjects(); nextQ(); };
+
+/* ---------- Granny's welcome and goodbye ---------- */
+const reviseHTML = list => list.map(r=>`<li><b>${esc(r.s)}, ${esc(r.t)}:</b> ${esc(r.q)} <i>Answer: ${esc(r.a)}</i></li>`).join('');
+function esc(v){ return String(v).replace(/[&<>"]/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'})[c]); }
+const GREET = () => `Come and sit with your Granny, ${N()}. Before we start, I want you to remember something I learned a long time ago. A good education is your way out of hard times. Nobody can ever take what you learn away from you, not ever. Every question you work through with me is another brick in a better life, so let's build it together, one brick at a time.`;
+function openWelcome(){
+  $('#w-h').textContent = `Hello, ${N()}`; $('#w-text').textContent = GREET();
+  const r = S.revise||[]; $('#w-revise').classList.toggle('hide', !r.length); $('#w-list').innerHTML = reviseHTML(r.slice(0,5));
+  $('#welcome').classList.remove('hide'); $('#w-go').focus();
+}
+$('#w-read').onclick = ()=>{ const r = S.revise||[]; say(GREET() + (r.length ? ' Before anything new, let us revise a few from last time. ' + r.slice(0,3).map(x=>x.q + ' The answer is ' + x.a + '.').join(' ') : ''), true); };
+$('#w-go').onclick = ()=>{ hush(); $('#welcome').classList.add('hide'); if (voiceOn) say(cur.text); };
+const BYE = () => sessionCount
+  ? `You've worked so hard today, ${N()}, and you've got ${S.stars} stars. But listen to your Granny: what you learn today slips away unless you go over it again. Spend ten minutes revising tonight, and again in a couple of days, and it will stay in your head for the exam. Remember, your education is your way out. I'm so proud of you, pet.`
+  : `Leaving already, ${N()}? Even ten minutes of practice helps. If you can't stay, promise your Granny you'll read over your notes tonight. Your education is your way out, love.`;
+function openBye(){
+  $('#b-h').textContent = `Before you go, ${N()}`; $('#bye-text').textContent = BYE();
+  const r = S.revise||[]; $('#bye-revise').classList.toggle('hide', !r.length); $('#bye-list').innerHTML = reviseHTML(r);
+  $('#bye').classList.remove('hide'); $('#bye-ok').focus(); if (voiceOn) say(BYE());
+}
+$('#b-finish').onclick = openBye;
+$('#bye-read').onclick = ()=>{ const r = S.revise||[]; say(BYE() + (r.length ? ' Here is what to revise. ' + r.slice(0,4).map(x=>x.q + ' The answer is ' + x.a + '.').join(' ') : ''), true); };
+$('#bye-stay').onclick = ()=>{ hush(); $('#bye').classList.add('hide'); };
+$('#bye-ok').onclick = ()=>{ $('#bye-text').textContent = `Good night, ${N()}. Revise tonight, and come back to see your Granny soon. Love you, pet.`; $('#bye-revise').classList.add('hide');
+  $('#bye-ok').classList.add('hide'); $('#bye-stay').textContent = 'Back to my questions'; $('#bye-read').classList.add('hide'); if (voiceOn) say($('#bye-text').textContent); };
+// Closing the page after some work: ask the browser to check first (it shows its own message)
+window.addEventListener('beforeunload', e=>{ if (sessionCount && $('#bye').classList.contains('hide')){ e.preventDefault(); e.returnValue = ''; } });
+document.addEventListener('keydown', e=>{ if (e.key==='Escape'){ if (!$('#welcome').classList.contains('hide')) $('#w-go').click(); else if (!$('#bye').classList.contains('hide')) $('#bye-stay').click(); } });
 
 if (!BANK[S.subj]) S.subj = 'maths';
-drawSubjects(); nextQ();
+drawSubjects(); nextQ(); openWelcome();
 </script>
 </body>
 </html>
