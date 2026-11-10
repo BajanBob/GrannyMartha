@@ -2,7 +2,7 @@
 title = Granny Martha
 package.name = grannymartha
 package.domain = org.grannymartha
-version = 1.1
+version = 1.2
 source.dir = src
 source.include_exts = py,html,png
 requirements = python3
@@ -13,7 +13,7 @@ android.permissions = INTERNET
 android.api = 34
 android.minapi = 24
 android.archs = arm64-v8a
-android.numeric_version = 110
+android.numeric_version = 120
 android.accept_sdk_license = True
 p4a.bootstrap = webview
 p4a.port = 8074

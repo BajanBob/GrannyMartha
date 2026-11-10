@@ -1,4 +1,4 @@
-# Builds GrannyMartha.apk and attaches it to the "granny-martha-v1.1" release.
+# Builds GrannyMartha.apk and attaches it to the "granny-martha-v1.2" release.
 name: Build Granny Martha apk
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
           echo "::error title=Build log (last 40 lines)::${TAIL}"
       - uses: softprops/action-gh-release@v2
         with:
-          tag_name: granny-martha-v1.1
-          name: Granny Martha 1.1
+          tag_name: granny-martha-v1.2
+          name: Granny Martha 1.2
           target_commitish: ${{ github.sha }}
           files: GrannyMartha.apk

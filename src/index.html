@@ -119,9 +119,9 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
     </div>
     <div class="stars">
       <button class="chip" type="button" id="b-finish">Finish for today</button>
-      <button class="chip hide" type="button" id="b-voice" aria-pressed="false">Granny's voice: off</button>
-      <span class="chip">Stars <b id="stars">0</b></span>
-      <span class="chip">Streak <b id="streak">0</b></span>
+      <button class="chip hide" type="button" id="b-voice" aria-pressed="true">Granny's voice: on</button>
+      <span class="chip">Granny's stars <b id="stars">0</b></span>
+      <span class="chip">Right in a row <b id="streak">0</b></span>
     </div>
   </header>
 
@@ -136,8 +136,8 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
         <div class="step">First, tell your Granny: how sure are you, pet?</div>
         <div class="conf" id="conf" role="group" aria-label="How sure are you">
           <button type="button" data-c="sure">I know this, Granny</button>
-          <button type="button" data-c="think">I think so</button>
-          <button type="button" data-c="guess">I'd be guessing</button>
+          <button type="button" data-c="think">I think so, Granny</button>
+          <button type="button" data-c="guess">I'd be guessing, Granny</button>
         </div>
       </div>
 
@@ -146,7 +146,7 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
         <div class="opts locked" id="opts"></div>
       </div>
 
-      <div class="says hide" id="hint"><span class="who">Granny's hint</span><span id="hint-text"></span></div>
+      <div class="says hide" id="hint"><span class="who">Granny whispers a clue</span><span id="hint-text"></span></div>
       <div class="says hide" id="fb"><span class="who" id="fb-who"></span><span id="fb-text"></span></div>
 
       <div class="says gift hide" id="gift"><span class="who">A gift from Granny</span><span id="gift-text"></span></div>
@@ -167,13 +167,13 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
 
     <aside class="side">
       <section class="card" id="ask-card">
-        <h2>Ask Granny anything</h2>
+        <h2>Ask your Granny anything</h2>
         <div class="chat" id="chat"><div class="msg g">Stuck on homework, or want something explained a different way? Ask me, love. I'll help you work it out rather than just hand you the answer.</div></div>
         <form id="ask-form" class="row" style="flex-wrap:nowrap">
-          <input type="text" id="ask-in" aria-label="Your question for Granny" placeholder="e.g. What is a metaphor?" maxlength="400" autocomplete="off">
-          <button class="btn" type="submit" id="ask-go">Ask</button>
+          <input type="text" id="ask-in" aria-label="Your question for Granny" placeholder="Go on, ask me. What's a metaphor, Granny?" maxlength="400" autocomplete="off">
+          <button class="btn" type="submit" id="ask-go">Ask Granny</button>
         </form>
-        <p class="small" id="ask-note">Granny's answers are written by AI. Check anything important with your teacher.</p>
+        <p class="small" id="ask-note">My answers come from a computer helper, so check anything important with your teacher, love.</p>
       </section>
 
       <section class="card">
@@ -191,9 +191,9 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
           <li><b>We'll go up a level together.</b> Three right in a row and I'll make it a bit harder.</li>
           <li><b>Revise before bed.</b> Ten minutes going over today's work keeps it in your head.</li>
         </ul>
-        <div class="row"><button class="btn ghost" type="button" id="b-name">Change the name</button><button class="btn ghost" type="button" id="b-reset">Start again from zero</button></div>
-        <form id="name-form" class="row hide" style="flex-wrap:nowrap"><input type="text" id="name-in" aria-label="Your first name" placeholder="Your first name" maxlength="20"><button class="btn" type="submit">Save</button></form>
-        <p class="small">Your progress is saved in this browser only.</p>
+        <div class="row"><button class="btn ghost" type="button" id="b-name">Tell Granny your name</button><button class="btn ghost" type="button" id="b-reset">Start afresh with Granny</button></div>
+        <form id="name-form" class="row hide" style="flex-wrap:nowrap"><input type="text" id="name-in" aria-label="Your first name" placeholder="What shall Granny call you?" maxlength="20"><button class="btn" type="submit">That's me, Granny</button></form>
+        <p class="small">I keep your stars and progress safe on this device only, pet.</p>
       </section>
     </aside>
   </div>
@@ -203,7 +203,7 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
   <div class="card">
     <h2 id="w-h">Hello, Bubba</h2>
     <p id="w-text"></p>
-    <div id="w-revise" class="hide"><p><b>Before anything new, let's revise these from last time:</b></p><ul class="revise" id="w-list"></ul></div>
+    <div id="w-revise" class="hide"><p><b>Before anything new, love, let's go over these from last time:</b></p><ul class="revise" id="w-list"></ul></div>
     <div class="row"><button class="btn" type="button" id="w-go">Let's start, Granny</button><button class="btn ghost" type="button" id="w-read">Read it to me, Granny</button></div>
   </div>
 </div>
@@ -211,8 +211,8 @@ ul.tips{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
   <div class="card">
     <h2 id="b-h">Before you go, Bubba</h2>
     <p id="bye-text"></p>
-    <div id="bye-revise" class="hide"><p><b>Revise these tonight, and again in two days:</b></p><ul class="revise" id="bye-list"></ul></div>
-    <div class="row"><button class="btn" type="button" id="bye-ok">I'll revise, Granny. Goodbye!</button><button class="btn ghost" type="button" id="bye-read">Read it to me, Granny</button><button class="btn ghost" type="button" id="bye-stay">One more question</button></div>
+    <div id="bye-revise" class="hide"><p><b>Go over these tonight, pet, and again in two days:</b></p><ul class="revise" id="bye-list"></ul></div>
+    <div class="row"><button class="btn" type="button" id="bye-ok">I'll revise, Granny. Goodbye!</button><button class="btn ghost" type="button" id="bye-read">Read it to me, Granny</button><button class="btn ghost" type="button" id="bye-stay">Just one more, Granny</button></div>
   </div>
 </div>
 
@@ -310,9 +310,9 @@ function drawSubjects(){
   ORDER.forEach(k=>{
     const b = document.createElement('button'); b.type='button'; b.className='subj'; b.setAttribute('aria-pressed', String(k===S.subj));
     const m = mastery(k);
-    b.innerHTML = `<span class="n"></span><span class="bar"><i style="width:${m}%"></i></span><span class="p">${m}% secure</span>`;
+    b.innerHTML = `<span class="n"></span><span class="bar"><i style="width:${m}%"></i></span><span class="p">${m === 0 ? "Not started yet, pet" : m === 100 ? "You know it all, love!" : m + "% learned so far"}</span>`;
     b.querySelector('.n').textContent = BANK[k].name;
-    b.onclick = ()=>{ S.subj=k; save(); drawSubjects(); nextQ(); };
+    b.onclick = ()=>{ S.subj=k; save(); drawSubjects(); started = true; say(`${BANK[k].name} it is, ${N()}.`); nextQ(); };
     $('#subjects').append(b);
   });
   $('#stars').textContent = S.stars; $('#streak').textContent = S.streak[S.subj]||0;
@@ -320,7 +320,7 @@ function drawSubjects(){
   const earned = Math.min(GIFTS.length, Math.floor(S.stars / PER_GIFT));
   $('#shelf-h').textContent = N() + "'s gift shelf";
   $('#shelf').innerHTML = GIFTS.map((g,i)=>`<div class="gift-i${i<earned?'':' locked'}"><span aria-hidden="true">${g[0]}</span>${i<earned?g[1]:'Locked'}</div>`).join('');
-  $('#shelf-note').textContent = earned >= GIFTS.length ? `Every gift earned. Granny is ever so proud, ${N()}.` : `${PER_GIFT - S.stars % PER_GIFT} more star${PER_GIFT - S.stars % PER_GIFT === 1 ? '' : 's'} until your next gift.`;
+  $('#shelf-note').textContent = earned >= GIFTS.length ? `Every gift earned. Granny is ever so proud, ${N()}.` : `Just ${PER_GIFT - S.stars % PER_GIFT} more star${PER_GIFT - S.stars % PER_GIFT === 1 ? '' : 's'}, ${N()}, and Granny has another gift for you.`;
   if (earned > (S.gifts||0)){ const g = GIFTS[earned-1]; S.gifts = earned; save();
     $('#gift-text').textContent = `${g[0]} ${N()}, you've earned ${S.stars} stars, so here's a ${g[1].toLowerCase()} for your shelf. Keep going, love!`; $('#gift').classList.remove('hide'); }
 }
@@ -334,8 +334,8 @@ function nextQ(){
   const d = pick.gen ? pick.gen() : pick;
   cur = {id:pick.id, l:pick.l, t:pick.t, text:d.text, right:d.o[0], opts:shuffle(d.o), hint:d.hint, why:d.why, seen:(pick.id in S.box)};
   conf = null; answered = false;
-  $('#q-subj').textContent = BANK[k].name; $('#q-topic').textContent = cur.t; $('#q-level').textContent = 'Level ' + cur.l + ' of 3';
-  $('#q-again').textContent = cur.seen && (S.box[cur.id]||0)===0 ? 'Back again so it sticks' : '';
+  $('#q-subj').textContent = BANK[k].name; $('#q-topic').textContent = cur.t; $('#q-level').textContent = ['Nice and gentle','A bit trickier','Proper GCSE stuff'][cur.l-1];
+  $('#q-again').textContent = cur.seen && (S.box[cur.id]||0)===0 ? 'Back again, so it sticks this time' : '';
   $('#q-text').textContent = cur.text;
   document.querySelectorAll('#conf button').forEach(b=>b.setAttribute('aria-pressed','false'));
   $('#conf-wrap').classList.remove('hide');
@@ -344,13 +344,15 @@ function nextQ(){
   ['#hint','#fb','#gift','#explain','#ex-fb','#b-next'].forEach(s=>$(s).classList.add('hide'));
   $('#b-hint').classList.remove('hide'); $('#b-hint').disabled=false;
   $('#ex-text').value=''; $('#ex-send').disabled=false;
-  say(cur.text);
+  if (started) say(cur.text + ' First, tell your Granny: how sure are you, pet?');
 }
+let started = false;
 
 document.querySelectorAll('#conf button').forEach(b=> b.onclick = ()=>{
   if (answered) return; conf = b.dataset.c;
   document.querySelectorAll('#conf button').forEach(x=>x.setAttribute('aria-pressed', String(x===b)));
   $('#opts').classList.remove('locked');
+  say({sure:'Good, you sound sure.', think:'Alright, trust yourself.', guess:"That's honest of you, pet."}[conf] + ' Now pick your answer, love. Is it ' + cur.opts.join(', or ') + '?');
 });
 
 $('#b-hint').onclick = ()=>{ $('#hint-text').textContent = cur.hint; $('#hint').classList.remove('hide'); $('#b-hint').disabled = true; cur.hinted = true; say(cur.hint); };
@@ -360,13 +362,13 @@ function answer(btn, txt){
   const ok = txt === cur.right, k = S.subj, box = S.box[cur.id]||0;
   document.querySelectorAll('#opts .opt').forEach(b=>{ b.disabled=true; if (b.textContent===cur.right) b.classList.add('right'); });
   if (!ok) btn.classList.add('wrong');
-  let say;
-  if (ok && conf==='guess'){ say = "Right, but you said you were guessing, so I'll bring this one back to make sure it's really yours. "; S.box[cur.id] = box; S.stars += 1; S.streak[k]=(S.streak[k]||0)+1; }
-  else if (ok){ say = praise() + (conf==='sure' ? "Spot on, and you knew it. " : "That's right, trust yourself a bit more. "); S.box[cur.id] = Math.min(3, box + (cur.hinted?1:(conf==='sure'?2:1))); S.stars += cur.hinted?1:2; S.streak[k]=(S.streak[k]||0)+1; }
-  else if (conf==='sure'){ say = "Not this time, and you felt sure, so this is a really useful one to catch now. Read this carefully, pet. "; S.box[cur.id]=0; S.streak[k]=0; }
-  else { say = `Not quite, ${N()}, and that's fine. Mistakes are how it gets in. `; S.box[cur.id]=0; S.streak[k]=0; }
-  $('#fb').className = 'says ' + (ok?'good':'bad'); $('#fb-who').textContent = ok ? 'Granny says: correct' : 'Granny says: the answer is ' + cur.right;
-  $('#fb-text').textContent = say + cur.why;
+  let msg;
+  if (ok && conf==='guess'){ msg = "Right, but you said you were guessing, so I'll bring this one back to make sure it's really yours. "; S.box[cur.id] = box; S.stars += 1; S.streak[k]=(S.streak[k]||0)+1; }
+  else if (ok){ msg = praise() + (conf==='sure' ? "Spot on, and you knew it. " : "That's right, trust yourself a bit more. "); S.box[cur.id] = Math.min(3, box + (cur.hinted?1:(conf==='sure'?2:1))); S.stars += cur.hinted?1:2; S.streak[k]=(S.streak[k]||0)+1; }
+  else if (conf==='sure'){ msg = "Not this time, and you felt sure, so this is a really useful one to catch now. Read this carefully, pet. "; S.box[cur.id]=0; S.streak[k]=0; }
+  else { msg = `Not quite, ${N()}, and that's fine. Mistakes are how it gets in. `; S.box[cur.id]=0; S.streak[k]=0; }
+  $('#fb').className = 'says ' + (ok?'good':'bad'); $('#fb-who').textContent = ok ? 'Well done, ' + N() + '!' : 'The answer is ' + cur.right + ', pet';
+  $('#fb-text').textContent = msg + cur.why;
   $('#conf-wrap').classList.add('hide'); $('#b-hint').classList.add('hide');
   $('#explain').classList.remove('hide'); $('#b-next').classList.remove('hide');
   if (!ok || conf==='guess'){ S.revise = (S.revise||[]).filter(r=>r.q!==cur.text); S.revise.unshift({s:BANK[k].name, t:cur.t, q:cur.text, a:cur.right}); S.revise = S.revise.slice(0,8); }
@@ -375,15 +377,16 @@ function answer(btn, txt){
   const st = S.streak[k]||0;
   if (ok && (st===3 || st===5 || st===10)) $('#fb-text').textContent += ` That's ${st} in a row, ${N()}. You're on a roll!`;
   save(); drawSubjects();
-  say($('#fb-who').textContent + '. ' + $('#fb-text').textContent + ($('#gift').classList.contains('hide') ? '' : ' ' + $('#gift-text').textContent));
+  say($('#fb-who').textContent + ' ' + $('#fb-text').textContent + ($('#gift').classList.contains('hide') ? '' : ' ' + $('#gift-text').textContent) + ' Now teach your old Granny: why is that the answer?');
 }
 $('#b-next').onclick = nextQ;
 
 /* ---------- Granny's voice: a British English voice from the device when it has one, otherwise a Claude voice ---------- */
-let voiceOn = false, tts = null, gb = null;
+let voiceOn = true, tts = null, gb = null;
+try { if (localStorage.getItem('granny_voice') === '0') voiceOn = false; } catch(e){}
 function pickGB(){ try { const vs = speechSynthesis.getVoices().filter(v=>/^en[-_]GB/i.test(v.lang));
   gb = vs.find(v=>/female|sonia|libby|maisie|kate|serena|hazel|martha|susan|stephanie/i.test(v.name)) || vs[0] || null; if (gb) voiceReady(); } catch(e){} }
-function voiceReady(){ $('#b-voice').classList.remove('hide'); $('#b-read').classList.remove('hide'); }
+function voiceReady(){ voiceLabel(); $('#b-voice').classList.remove('hide'); $('#b-read').classList.remove('hide'); }
 try { if ('speechSynthesis' in window){ pickGB(); speechSynthesis.onvoiceschanged = pickGB; } } catch(e){}
 if (window.claude && claude.use) claude.use('tts').then(t=>{ tts = t; if (t) voiceReady(); }).catch(()=>{});
 function hush(){ try { speechSynthesis.cancel(); } catch(e){} try { tts && tts.stop(); } catch(e){} }
@@ -394,7 +397,8 @@ function say(text, force){
     else if (tts) tts.speak(text, {voice:'rounded', rate:0.9, language:'en'}).catch(e=>{ if (e && e.code==='not_granted'){ tts = null; if (!gb){ $('#b-voice').classList.add('hide'); $('#b-read').classList.add('hide'); } } });
   } catch(e){}
 }
-$('#b-voice').onclick = ()=>{ voiceOn = !voiceOn; $('#b-voice').setAttribute('aria-pressed', String(voiceOn)); $('#b-voice').textContent = "Granny's voice: " + (voiceOn?'on':'off');
+function voiceLabel(){ $('#b-voice').setAttribute('aria-pressed', String(voiceOn)); $('#b-voice').textContent = "Granny's voice: " + (voiceOn?'on':'off'); }
+$('#b-voice').onclick = ()=>{ voiceOn = !voiceOn; try { localStorage.setItem('granny_voice', voiceOn?'1':'0'); } catch(e){} $('#b-voice').setAttribute('aria-pressed', String(voiceOn)); $('#b-voice').textContent = "Granny's voice: " + (voiceOn?'on':'off');
   if (voiceOn) say(`Hello ${N()}, it's Granny Martha. I'll read things out for you now.`); else hush(); };
 $('#b-read').onclick = ()=>{ const parts = [cur.text]; if (!answered) parts.push('Is it: ' + cur.opts.join(', or, ') + '?'); else parts.push($('#fb-who').textContent + '. ' + $('#fb-text').textContent); say(parts.join(' '), true); };
 
@@ -402,12 +406,12 @@ $('#b-read').onclick = ()=>{ const parts = [cur.text]; if (!answered) parts.push
 let sample = null;
 const PERSONA = "You are Granny Martha, a warm, patient, gently funny English grandmother and retired teacher tutoring a 12-year-old in England (Key Stage 3, building towards GCSEs in Maths, English, Geography, RE and History). Use British English and British curriculum terms. Keep replies under 90 words, plain text only, no markdown. Be encouraging but honest. Guide the child to the answer with a clue or a question rather than just giving it, unless they ask for a fact. Stay on schoolwork and learning; if asked about anything unsuitable for a child or anything personal or worrying, kindly suggest they talk to a parent, carer or teacher. Be fair and respectful about every religion. You believe a good education is the child's way out of hard times, and now and then you remind them, gently, to revise so they remember.";
 if (window.claude && claude.use) claude.use('sample').then(s=>{ sample = s; if (!s) noBrain(); }).catch(noBrain); else noBrain();
-function noBrain(){ sample = null; $('#ask-form').classList.add('hide'); $('#ask-note').textContent = "Granny's question box isn't switched on for this view, but all the practice questions and hints work."; }
+function noBrain(){ sample = null; $('#ask-form').classList.add('hide'); $('#ask-note').textContent = "My chatting corner doesn't work here, pet, but all my questions, clues and gifts still do."; }
 
 async function ask(input, el){
   el.textContent = 'Granny is thinking...';
   try { const r = await sample(input, {cache:false, modelTier:'default', onText: ({text}) => { if (text) el.textContent = text; }}); el.textContent = r.text || el.textContent; say(el.textContent); return true; }
-  catch(e){ el.textContent = e && e.code==='rate_limited' ? "Granny needs a little rest. Try again in a minute, pet." : "Granny can't answer just now. Use the hint and the explanation instead."; if (e && e.code==='not_granted') noBrain(); return false; }
+  catch(e){ el.textContent = e && e.code==='rate_limited' ? "Granny needs a little rest. Try again in a minute, pet." : "Granny's a bit muddled just now, love. Try my clue and my explanation instead."; if (e && e.code==='not_granted') noBrain(); return false; }
 }
 
 const history = [];
@@ -427,18 +431,18 @@ $('#ask-form').addEventListener('submit', async e=>{
 
 $('#ex-send').onclick = async ()=>{
   const t = $('#ex-text').value.trim(); const out = $('#ex-fb-text');
-  if (t.length < 8){ $('#ex-fb').classList.remove('hide'); out.textContent = "Give me a full sentence, love. Start with \"Because...\""; return; }
+  if (t.length < 8){ $('#ex-fb').classList.remove('hide'); out.textContent = "Give me a full sentence, love. Start with \"Because...\""; say(out.textContent); return; }
   $('#ex-fb').classList.remove('hide'); $('#ex-send').disabled = true;
-  if (!sample){ out.textContent = "Lovely. Now compare yours with mine: " + cur.why + " If yours says the same idea in your own words, you've got it."; S.stars += 1; save(); drawSubjects(); return; }
+  if (!sample){ out.textContent = "Lovely. Now compare yours with mine: " + cur.why + " If yours says the same idea in your own words, you've got it."; say(out.textContent); S.stars += 1; save(); drawSubjects(); return; }
   const ok = await ask(PERSONA + `\n\nPractice question: "${cur.text}"\nCorrect answer: ${cur.right}\nModel explanation: ${cur.why}\n\nThe child was asked to explain in their own words why that is the answer. The child is called ${N()}. Their explanation: "${t.slice(0,500)}"\n\nRespond as Granny Martha in under 70 words: say what they got right, gently fix any misunderstanding, and end with one short follow-up question that stretches them a little.`, out);
   if (ok){ S.stars += 1; save(); drawSubjects(); } else out.textContent += " Here's mine to compare: " + cur.why;
 };
 
 $('#b-name').onclick = ()=>{ $('#name-form').classList.toggle('hide'); $('#name-in').value = S.name; $('#name-in').focus(); };
-$('#name-form').addEventListener('submit', e=>{ e.preventDefault(); S.name = $('#name-in').value.trim().slice(0,20); save(); $('#name-form').classList.add('hide'); drawSubjects(); });
+$('#name-form').addEventListener('submit', e=>{ e.preventDefault(); S.name = $('#name-in').value.trim().slice(0,20); save(); $('#name-form').classList.add('hide'); drawSubjects(); say(`Lovely to meet you properly, ${N()}.`); });
 let armed = false;
-$('#b-reset').onclick = ()=>{ if (!armed){ armed = true; $('#b-reset').textContent = 'Press again to wipe progress'; setTimeout(()=>{ armed=false; $('#b-reset').textContent='Start again from zero'; }, 4000); return; }
-  S = {name:S.name, stars:0, gifts:0, box:{}, streak:{}, subj:S.subj, revise:[]}; save(); armed=false; $('#b-reset').textContent='Start again from zero'; drawSubjects(); nextQ(); };
+$('#b-reset').onclick = ()=>{ if (!armed){ armed = true; $('#b-reset').textContent = 'Are you sure, pet? Press again'; setTimeout(()=>{ armed=false; $('#b-reset').textContent='Start afresh with Granny'; }, 4000); return; }
+  S = {name:S.name, stars:0, gifts:0, box:{}, streak:{}, subj:S.subj, revise:[]}; save(); armed=false; $('#b-reset').textContent='Start afresh with Granny'; drawSubjects(); nextQ(); };
 
 /* ---------- Granny's welcome and goodbye ---------- */
 const reviseHTML = list => list.map(r=>`<li><b>${esc(r.s)}, ${esc(r.t)}:</b> ${esc(r.q)} <i>Answer: ${esc(r.a)}</i></li>`).join('');
@@ -450,7 +454,7 @@ function openWelcome(){
   $('#welcome').classList.remove('hide'); $('#w-go').focus();
 }
 $('#w-read').onclick = ()=>{ const r = S.revise||[]; say(GREET() + (r.length ? ' Before anything new, let us revise a few from last time. ' + r.slice(0,3).map(x=>x.q + ' The answer is ' + x.a + '.').join(' ') : ''), true); };
-$('#w-go').onclick = ()=>{ hush(); $('#welcome').classList.add('hide'); if (voiceOn) say(cur.text); };
+$('#w-go').onclick = ()=>{ hush(); started = true; $('#welcome').classList.add('hide'); say(`Right then, ${N()}, here's your first one. ` + cur.text + ' First, tell your Granny: how sure are you, pet?'); };
 const BYE = () => sessionCount
   ? `You've worked so hard today, ${N()}, and you've got ${S.stars} stars. But listen to your Granny: what you learn today slips away unless you go over it again. Spend ten minutes revising tonight, and again in a couple of days, and it will stay in your head for the exam. Remember, your education is your way out. I'm so proud of you, pet.`
   : `Leaving already, ${N()}? Even ten minutes of practice helps. If you can't stay, promise your Granny you'll read over your notes tonight. Your education is your way out, love.`;
@@ -461,9 +465,9 @@ function openBye(){
 }
 $('#b-finish').onclick = openBye;
 $('#bye-read').onclick = ()=>{ const r = S.revise||[]; say(BYE() + (r.length ? ' Here is what to revise. ' + r.slice(0,4).map(x=>x.q + ' The answer is ' + x.a + '.').join(' ') : ''), true); };
-$('#bye-stay').onclick = ()=>{ hush(); $('#bye').classList.add('hide'); };
+$('#bye-stay').onclick = ()=>{ hush(); $('#bye').classList.add('hide'); say(`That's my ${N()}. Here we go. ` + cur.text); };
 $('#bye-ok').onclick = ()=>{ $('#bye-text').textContent = `Good night, ${N()}. Revise tonight, and come back to see your Granny soon. Love you, pet.`; $('#bye-revise').classList.add('hide');
-  $('#bye-ok').classList.add('hide'); $('#bye-stay').textContent = 'Back to my questions'; $('#bye-read').classList.add('hide'); if (voiceOn) say($('#bye-text').textContent); };
+  $('#bye-ok').classList.add('hide'); $('#bye-stay').textContent = 'Back to my questions, Granny'; $('#bye-read').classList.add('hide'); if (voiceOn) say($('#bye-text').textContent); };
 // Closing the page after some work: ask the browser to check first (it shows its own message)
 window.addEventListener('beforeunload', e=>{ if (sessionCount && $('#bye').classList.contains('hide')){ e.preventDefault(); e.returnValue = ''; } });
 document.addEventListener('keydown', e=>{ if (e.key==='Escape'){ if (!$('#welcome').classList.contains('hide')) $('#w-go').click(); else if (!$('#bye').classList.contains('hide')) $('#bye-stay').click(); } });
